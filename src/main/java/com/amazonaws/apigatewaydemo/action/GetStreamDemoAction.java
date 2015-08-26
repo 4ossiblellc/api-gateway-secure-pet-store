@@ -17,42 +17,42 @@ import com.amazonaws.apigatewaydemo.exception.BadRequestException;
 import com.amazonaws.apigatewaydemo.exception.DAOException;
 import com.amazonaws.apigatewaydemo.exception.InternalErrorException;
 import com.amazonaws.apigatewaydemo.model.DAOFactory;
-import com.amazonaws.apigatewaydemo.model.action.GetPetRequest;
-import com.amazonaws.apigatewaydemo.model.pet.Pet;
-import com.amazonaws.apigatewaydemo.model.pet.PetDAO;
+import com.amazonaws.apigatewaydemo.model.action.GetStreamRequest;
+import com.amazonaws.apigatewaydemo.model.stream.Stream;
+import com.amazonaws.apigatewaydemo.model.stream.StreamDAO;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.google.gson.JsonObject;
 
 /**
- * Action that extracts a pet from the data store based on the given petId
+ * Action that extracts a stream from the data store based on the given streamId
  * <p/>
- * GET to /pets/{petId}
+ * GET to /streams/{streamId}
  */
-public class GetPetDemoAction extends AbstractDemoAction {
+public class GetStreamDemoAction extends AbstractDemoAction {
     private static LambdaLogger logger;
 
     public String handle(JsonObject request, Context lambdaContext) throws BadRequestException, InternalErrorException {
         logger = lambdaContext.getLogger();
 
-        GetPetRequest input = getGson().fromJson(request, GetPetRequest.class);
+        GetStreamRequest input = getGson().fromJson(request, GetStreamRequest.class);
 
         if (input == null ||
-                input.getPetId() == null ||
-                input.getPetId().trim().equals("")) {
+                input.getStreamId() == null ||
+                input.getStreamId().trim().equals("")) {
             logger.log("Invalid input passed to " + this.getClass().getName());
             throw new BadRequestException(ExceptionMessages.EX_INVALID_INPUT);
         }
 
-        PetDAO dao = DAOFactory.getPetDAO();
-        Pet pet;
+        StreamDAO dao = DAOFactory.getStreamDAO();
+        Stream stream;
         try {
-            pet = dao.getPetById(input.getPetId());
+            stream = dao.getStreamById(input.getStreamId());
         } catch (final DAOException e) {
-            logger.log("Error while fetching pet with id " + input.getPetId() + "\n" + e.getMessage());
+            logger.log("Error while fetching stream with id " + input.getStreamId() + "\n" + e.getMessage());
             throw new InternalErrorException(ExceptionMessages.EX_DAO_ERROR);
         }
 
-        return getGson().toJson(pet);
+        return getGson().toJson(stream);
     }
 }

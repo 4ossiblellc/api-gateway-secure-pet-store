@@ -20,7 +20,7 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "APIGSessionCredentialsProvider.h"
-#import "CreatePetViewController.h"
+#import "CreateStreamViewController.h"
 #import "UIViewController+PETViewController.h"
 #import "PETLambdaMicroserviceClient.h"
 
@@ -46,8 +46,8 @@
     // configuration (see setDefaultConfiguration is AppDelegate), we first show the login window.
     if (AWSServiceManager.defaultServiceManager.defaultServiceConfiguration == NULL) {
         [self showLoginWindow];
-    } else { // otherwise we start loading the list of pets
-        [self loadPets];
+    } else { // otherwise we start loading the list of streams
+        [self loadStreams];
     }
 }
 
@@ -66,7 +66,7 @@
 
 - (void)insertNewObject:(id)sender {
     NSLog(@"insert");
-    [self performSegueWithIdentifier:@"createPet" sender:self];
+    [self performSegueWithIdentifier:@"createStream" sender:self];
 }
 
 #pragma mark - Segues
@@ -75,18 +75,18 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
         PETLambdaMicroserviceClient *client = [PETLambdaMicroserviceClient defaultClient];
-        [controller showLoader:@"Loading pet"];
+        [controller showLoader:@"Loading stream"];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PETListPetsResponse_pets_item *curPet = self.objects[indexPath.row];
-        [[client petsPetIdGet:curPet.petId] continueWithBlock:^id(AWSTask *task) {
+        PETListStreamsResponse_streams_item *curStream = self.objects[indexPath.row];
+        [[client streamsStreamIdGet:curStream.streamId] continueWithBlock:^id(AWSTask *task) {
             [controller hideLoader];
             if (task.error) {
                 NSDictionary *errorBody = [task.error.userInfo objectForKey:AWSAPIGatewayErrorHTTPBodyKey];
                 NSString *errorMessage = [errorBody objectForKey:@"message"];
 
-                [self showErrorMessage:errorMessage withTitle:@"Error while retrieving pet"];
+                [self showErrorMessage:errorMessage withTitle:@"Error while retrieving stream"];
             } else {
-                PETGetPetResponse *resp = task.result;
+                PETGetStreamResponse *resp = task.result;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [controller setDetailItem:resp];
                 });
@@ -96,8 +96,8 @@
 
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
-    } else if ([[segue identifier] isEqualToString:@"createPet"]) {
-        CreatePetViewController *controller = (CreatePetViewController *)[segue destinationViewController];
+    } else if ([[segue identifier] isEqualToString:@"createStream"]) {
+        CreateStreamViewController *controller = (CreateStreamViewController *)[segue destinationViewController];
         controller.masterController = self;
     }
 }
@@ -107,19 +107,19 @@
     [self performSegueWithIdentifier:@"login-segue" sender:self];
 }
 
-- (void)loadPets {
-    [self showLoader:@"Loading pet list"];
+- (void)loadStreams {
+    [self showLoader:@"Loading stream list"];
 
     PETLambdaMicroserviceClient *client = [PETLambdaMicroserviceClient defaultClient];
-    [[client petsGet] continueWithBlock:^id(AWSTask *task) {
+    [[client streamsGet] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
             NSDictionary *errorBody = [task.error.userInfo objectForKey:AWSAPIGatewayErrorHTTPBodyKey];
             NSString *errorMessage = [errorBody objectForKey:@"message"];
 
-            [self showErrorMessage:errorMessage withTitle:@"Error while retrieving the pet list"];
+            [self showErrorMessage:errorMessage withTitle:@"Error while retrieving the stream list"];
         } else {
-            PETListPetsResponse *pets = task.result;
-            self.objects = [NSMutableArray arrayWithArray:pets.pets];
+            PETListStreamsResponse *streams = task.result;
+            self.objects = [NSMutableArray arrayWithArray:streams.streams];
             [self hideLoader];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
@@ -142,8 +142,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    PETListPetsResponse_pets_item *object = self.objects[indexPath.row];
-    cell.textLabel.text = object.petName;
+    PETListStreamsResponse_streams_item *object = self.objects[indexPath.row];
+    cell.textLabel.text = object.streamName;
     return cell;
 }
 

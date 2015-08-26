@@ -13,16 +13,16 @@
 package com.amazonaws.apigatewaydemo.model.action;
 
 /**
- * Bean for the pet creation response.
+ * Bean for the stream creation response.
  */
-public class CreatePetResponse {
-    private String petId;
+public class CreateStreamResponse {
+    private String streamId;
 
-    public String getPetId() {
-        return petId;
+    public String getStreamId() {
+        return streamId;
     }
 
-    public void setPetId(String petId) {
-        this.petId = petId;
+    public void setStreamId(String streamId) {
+        this.streamId = streamId;
     }
 }

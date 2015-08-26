@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.amazonaws</groupId>
-    <artifactId>api-gateway-secure-pet-store</artifactId>
+    <artifactId>api-gateway-secure-stream-store</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <licenses>

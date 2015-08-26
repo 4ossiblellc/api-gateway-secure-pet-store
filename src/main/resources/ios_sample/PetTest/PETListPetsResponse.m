@@ -14,20 +14,20 @@
  */
  
 
-#import "PETListPetsResponse.h"
+#import "PETListStreamsResponse.h"
 
-@implementation PETListPetsResponse
+@implementation PETListStreamsResponse
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"count": @"count",
              @"pageLimit": @"pageLimit",
-             @"pets": @"pets"
+             @"streams": @"streams"
              };
 }
 
-+ (NSValueTransformer *)petsJSONTransformer {
-	return [NSValueTransformer awsmtl_JSONArrayTransformerWithModelClass:[PETListPetsResponse_pets_item class]];
++ (NSValueTransformer *)streamsJSONTransformer {
+	return [NSValueTransformer awsmtl_JSONArrayTransformerWithModelClass:[PETListStreamsResponse_streams_item class]];
 }
 
 @end

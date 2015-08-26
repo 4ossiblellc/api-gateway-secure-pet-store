@@ -19,16 +19,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class PETGetPetResponse;
+@class PETGetStreamResponse;
 
 @interface DetailViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel; // It's not used.
-@property (weak, nonatomic) IBOutlet UILabel *petIdLabel;
-@property (weak, nonatomic) IBOutlet UILabel *petTypeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *petNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *petAgeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *streamIdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *streamTypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *streamNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *streamAgeLabel;
 
-@property (strong, nonatomic) PETGetPetResponse *detailItem;
+@property (strong, nonatomic) PETGetStreamResponse *detailItem;
 
 @end

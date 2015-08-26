@@ -12,8 +12,8 @@
  */
 package com.amazonaws.apigatewaydemo.model;
 
-import com.amazonaws.apigatewaydemo.model.pet.DDBPetDAO;
-import com.amazonaws.apigatewaydemo.model.pet.PetDAO;
+import com.amazonaws.apigatewaydemo.model.stream.DDBStreamDAO;
+import com.amazonaws.apigatewaydemo.model.stream.StreamDAO;
 import com.amazonaws.apigatewaydemo.model.user.DDBUserDAO;
 import com.amazonaws.apigatewaydemo.model.user.UserDAO;
 
@@ -55,25 +55,25 @@ public class DAOFactory {
     }
 
     /**
-     * Returns the default PetDAO implementation
+     * Returns the default StreamDAO implementation
      *
-     * @return The DynamoDB PetDAO implementation
+     * @return The DynamoDB StreamDAO implementation
      */
-    public static PetDAO getPetDAO() {
-        return getPetDAO(DAOType.DynamoDB);
+    public static StreamDAO getStreamDAO() {
+        return getStreamDAO(DAOType.DynamoDB);
     }
 
     /**
-     * Returns a PetDAO implementation
+     * Returns a StreamDAO implementation
      *
      * @param daoType The implementation type
      * @return The requested DAO implementation
      */
-    public static PetDAO getPetDAO(DAOType daoType) {
-        PetDAO dao = null;
+    public static StreamDAO getStreamDAO(DAOType daoType) {
+        StreamDAO dao = null;
         switch (daoType) {
             case DynamoDB:
-                dao = DDBPetDAO.getInstance();
+                dao = DDBStreamDAO.getInstance();
                 break;
         }
 

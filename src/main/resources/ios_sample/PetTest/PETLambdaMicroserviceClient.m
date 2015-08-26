@@ -21,10 +21,10 @@
 
 #import "PETLoginUserResponse.h"
 #import "PETRegisterUserRequest.h"
-#import "PETListPetsResponse.h"
-#import "PETCreatePetResponse.h"
-#import "PETCreatePetRequest.h"
-#import "PETGetPetResponse.h"
+#import "PETListStreamsResponse.h"
+#import "PETCreateStreamResponse.h"
+#import "PETCreateStreamRequest.h"
+#import "PETGetStreamResponse.h"
 #import "PETRegisterUserResponse.h"
 #import "PETError.h"
 
@@ -155,7 +155,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                      responseClass:[PETLoginUserResponse class]];
 }
 
-- (AWSTask *)petsGet {
+- (AWSTask *)streamsGet {
     NSDictionary *headerParameters = @{
                                        @"Content-Type": @"application/json",
                                        @"Accept": @"application/json",
@@ -169,15 +169,15 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                                      };
     
     return [self invokeHTTPRequest:@"GET"
-                         URLString:@"/pets"
+                         URLString:@"/streams"
                     pathParameters:pathParameters
                    queryParameters:queryParameters
                   headerParameters:headerParameters
                               body:nil
-                     responseClass:[PETListPetsResponse class]];
+                     responseClass:[PETListStreamsResponse class]];
 }
 
-- (AWSTask *)petsPost:(PETCreatePetRequest *)body {
+- (AWSTask *)streamsPost:(PETCreateStreamRequest *)body {
     NSDictionary *headerParameters = @{
                                        @"Content-Type": @"application/json",
                                        @"Accept": @"application/json",
@@ -191,15 +191,15 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                                      };
     
     return [self invokeHTTPRequest:@"POST"
-                         URLString:@"/pets"
+                         URLString:@"/streams"
                     pathParameters:pathParameters
                    queryParameters:queryParameters
                   headerParameters:headerParameters
                               body:body
-                     responseClass:[PETCreatePetResponse class]];
+                     responseClass:[PETCreateStreamResponse class]];
 }
 
-- (AWSTask *)petsPetIdGet:(NSString *)petId {
+- (AWSTask *)streamsStreamIdGet:(NSString *)streamId {
     NSDictionary *headerParameters = @{
                                        @"Content-Type": @"application/json",
                                        @"Accept": @"application/json",
@@ -209,16 +209,16 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                                       
                                       };
     NSDictionary *pathParameters = @{
-                                     @"petId": petId
+                                     @"streamId": streamId
                                      };
     
     return [self invokeHTTPRequest:@"GET"
-                         URLString:@"/pets/{petId}"
+                         URLString:@"/streams/{streamId}"
                     pathParameters:pathParameters
                    queryParameters:queryParameters
                   headerParameters:headerParameters
                               body:nil
-                     responseClass:[PETGetPetResponse class]];
+                     responseClass:[PETGetStreamResponse class]];
 }
 
 - (AWSTask *)usersPost:(PETRegisterUserRequest *)body {

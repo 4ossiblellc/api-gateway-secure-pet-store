@@ -11,27 +11,27 @@
       "id": "http://jsonschema.net/pageLimit",
       "type": "integer"
     },
-    "pets": {
-      "id": "http://jsonschema.net/pets",
+    "streams": {
+      "id": "http://jsonschema.net/streams",
       "type": "array",
       "items": {
-        "id": "http://jsonschema.net/pets/0",
+        "id": "http://jsonschema.net/streams/0",
         "type": "object",
         "properties": {
-          "petId": {
-            "id": "http://jsonschema.net/pets/0/petId",
+          "streamId": {
+            "id": "http://jsonschema.net/streams/0/streamId",
             "type": "string"
           },
-          "petType": {
-            "id": "http://jsonschema.net/pets/0/petType",
+          "streamType": {
+            "id": "http://jsonschema.net/streams/0/streamType",
             "type": "string"
           },
-          "petName": {
-            "id": "http://jsonschema.net/pets/0/petName",
+          "streamName": {
+            "id": "http://jsonschema.net/streams/0/streamName",
             "type": "string"
           },
-          "petAge": {
-            "id": "http://jsonschema.net/pets/0/petAge",
+          "streamAge": {
+            "id": "http://jsonschema.net/streams/0/streamAge",
             "type": "integer"
           }
         }
@@ -41,6 +41,6 @@
   "required": [
     "count",
     "pageLimit",
-    "pets"
+    "streams"
   ]
 }

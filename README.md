@@ -8,7 +8,7 @@ The Secure Pet Store sample is an application built in Java for [AWS Lambda](htt
 	![Cognito Create Identity Pool Screenshot](src/main/resources/doc_images/cognito_create_pool.png)
 * The next step in the identity pool creation process sets up the IAM roles. For the time being simply click **Allow** to create the identity pool.
 	![Cognito Setup IAM Role Screenshot](src/main/resources/doc_images/cognito_iam_role.png)
-* Now that we have created the Cognito Identity Pool we need to setup the DynamoDB tables. The application requires 2 DynamoDB tables: one for the users and one for the pets. The annotated objects for users and pets are `com.amazonaws.apigatewaydemo.model.pet.Pet` and `com.amazonaws.apigatewaydemo.model.user.User` in the app source code.
+* Now that we have created the Cognito Identity Pool we need to setup the DynamoDB tables. The application requires 2 DynamoDB tables: one for the users and one for the pets. The annotated objects for users and pets are `com.amazonaws.apigatewaydemo.model.stream.Pet` and `com.amazonaws.apigatewaydemo.model.user.User` in the app source code.
  * The table for the users should have only a `Hash Key` of type `string` called **username**.
  * The pets table also has only a `Hash Key` of type `string` called **petId**.
 * The next step is to configure the application to utilize the correct Cognito Identity Pool and DynamoDB tables. The app reads the configuration from static variables declared in the `CognitoConfiguration` and `DynamoDBConfiguration` in the `com.amazonaws.apigatewaydemo.configuration` package. Open the 2 classes and set the correct values on the properties.

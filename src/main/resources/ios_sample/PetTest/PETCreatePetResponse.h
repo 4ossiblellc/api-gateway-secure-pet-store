@@ -18,9 +18,9 @@
 #import <AWSCore/AWSCore.h>
 
  
-@interface PETCreatePetResponse : AWSModel
+@interface PETCreateStreamResponse : AWSModel
 
-@property (nonatomic, strong) NSString *petId;
+@property (nonatomic, strong) NSString *streamId;
 
 
 @end

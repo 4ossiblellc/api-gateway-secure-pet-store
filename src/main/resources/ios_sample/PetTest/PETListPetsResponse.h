@@ -16,10 +16,10 @@
 
 #import <Foundation/Foundation.h>
 #import <AWSCore/AWSCore.h>
-#import "PETListPetsResponse_pets_item.h"
+#import "PETListStreamsResponse_streams_item.h"
 
  
-@interface PETListPetsResponse : AWSModel
+@interface PETListStreamsResponse : AWSModel
 
 @property (nonatomic, strong) NSNumber *count;
 
@@ -27,7 +27,7 @@
 @property (nonatomic, strong) NSNumber *pageLimit;
 
 
-@property (nonatomic, strong) NSArray *pets;
+@property (nonatomic, strong) NSArray *streams;
 
 
 @end

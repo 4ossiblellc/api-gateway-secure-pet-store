@@ -18,15 +18,15 @@
 #import <AWSCore/AWSCore.h>
 
  
-@interface PETCreatePetRequest : AWSModel
+@interface PETCreateStreamRequest : AWSModel
 
-@property (nonatomic, strong) NSString *petType;
-
-
-@property (nonatomic, strong) NSString *petName;
+@property (nonatomic, strong) NSString *streamType;
 
 
-@property (nonatomic, strong) NSNumber *petAge;
+@property (nonatomic, strong) NSString *streamName;
+
+
+@property (nonatomic, strong) NSNumber *streamAge;
 
 
 @end

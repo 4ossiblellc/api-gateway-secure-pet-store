@@ -17,9 +17,9 @@ package com.amazonaws.apigatewaydemo.configuration;
  */
 public class CognitoConfiguration {
     // TODO: Specify the identity pool id
-    public static final String IDENTITY_POOL_ID = "us-east-1:xxxxx-xxx-xxx-xxx-xxxxxxxxx";
+    public static final String IDENTITY_POOL_ID = "us-east-1:1add9a6f-1496-4ff6-a610-215aa4403f51";
     // TODO: Specify the custom provider name used by the identity pool
-    public static final String CUSTOM_PROVIDER_NAME = "com.customprovider";
+    public static final String CUSTOM_PROVIDER_NAME = "login.livecooktv";
 
     // This should not be changed, it is a default value for Cognito.
     public static final String COGNITO_PROVIDER_NAME = "cognito-identity.amazonaws.com";

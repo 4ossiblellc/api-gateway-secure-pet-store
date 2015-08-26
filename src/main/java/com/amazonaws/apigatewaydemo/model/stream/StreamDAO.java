@@ -10,33 +10,33 @@
  * OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package com.amazonaws.apigatewaydemo.model.pet;
+package com.amazonaws.apigatewaydemo.model.stream;
 
 import com.amazonaws.apigatewaydemo.exception.DAOException;
 
 import java.util.List;
 
 /**
- * This interface defines the methods required for an implementation of the PetDAO object
+ * This interface defines the methods required for an implementation of the StreamDAO object
  */
-public interface PetDAO {
+public interface StreamDAO {
     /**
-     * Creates a new pet in the data store
+     * Creates a new stream in the data store
      *
-     * @param pet The pet object to be created
-     * @return The generated petId
+     * @param stream The stream object to be created
+     * @return The generated streamId
      * @throws DAOException Whenever an error occurs while accessing the data store
      */
-    String createPet(Pet pet) throws DAOException;
+    String createStream(Stream stream) throws DAOException;
 
     /**
-     * Retrieves a Pet object by its id
+     * Retrieves a Stream object by its id
      *
-     * @param petId The petId to look for
-     * @return An initialized and populated Pet object. If the pet couldn't be found return null
+     * @param streamId The streamId to look for
+     * @return An initialized and populated Stream object. If the stream couldn't be found return null
      * @throws DAOException Whenever a data store access error occurs
      */
-    Pet getPetById(String petId) throws DAOException;
+    Stream getStreamById(String streamId) throws DAOException;
 
-    List<Pet> getPets(int limit);
+    List<Stream> getStreams(int limit);
 }

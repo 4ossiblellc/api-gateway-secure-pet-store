@@ -30,10 +30,10 @@
 @property (strong, nonatomic) PETLambdaMicroserviceClient *client;
 
 /**
- * Loads the list of pets from the APIs and populates the UITableView variables. Once the list is populated
+ * Loads the list of streams from the APIs and populates the UITableView variables. Once the list is populated
  * calls the refreshData method.
  */
-- (void)loadPets;
+- (void)loadStreams;
 
 /**
  * Show the login window modally

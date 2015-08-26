@@ -10,7 +10,7 @@
  * OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
-package com.amazonaws.apigatewaydemo.model.pet;
+package com.amazonaws.apigatewaydemo.model.stream;
 
 import com.amazonaws.apigatewaydemo.configuration.DynamoDBConfiguration;
 import com.amazonaws.apigatewaydemo.exception.DAOException;
@@ -22,7 +22,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import java.util.List;
 
 /**
- * The DynamoDB implementation of the PetDAO object. This class expects the Pet bean to be annotated with the required
+ * The DynamoDB implementation of the StreamDAO object. This class expects the Stream bean to be annotated with the required
  * DynamoDB Object Mapper annotations. Configuration values for the class such as table name and pagination rows is read
  * from the DynamoDBConfiguration class in the com.amazonaws.apigateway.configuration package. Credentials for the
  * DynamoDB client are read from the environment variables in the Lambda instance.
@@ -30,75 +30,75 @@ import java.util.List;
  * This class is a singleton and should only be accessed through the static getInstance method. The constructor is defined
  * as protected.
  */
-public class DDBPetDAO implements PetDAO {
-    private static DDBPetDAO instance = null;
+public class DDBStreamDAO implements StreamDAO {
+    private static DDBStreamDAO instance = null;
 
     // credentials for the client come from the environment variables pre-configured by Lambda. These are tied to the
     // Lambda function execution role.
     private static AmazonDynamoDBClient ddbClient = new AmazonDynamoDBClient();
 
     /**
-     * Returns the initialized default instance of the PetDAO
+     * Returns the initialized default instance of the StreamDAO
      *
-     * @return An initialized PetDAO instance
+     * @return An initialized StreamDAO instance
      */
-    public static DDBPetDAO getInstance() {
+    public static DDBStreamDAO getInstance() {
         if (instance == null) {
-            instance = new DDBPetDAO();
+            instance = new DDBStreamDAO();
         }
 
         return instance;
     }
 
-    protected DDBPetDAO() {
+    protected DDBStreamDAO() {
         // constructor is protected so that it can't be called from the outside
     }
 
     /**
-     * Creates a new Pet
+     * Creates a new Stream
      *
-     * @param pet The pet object to be created
-     * @return The id for the newly created Pet object
+     * @param stream The stream object to be created
+     * @return The id for the newly created Stream object
      * @throws DAOException
      */
-    public String createPet(Pet pet) throws DAOException {
-        if (pet.getPetType() == null || pet.getPetType().trim().equals("")) {
-            throw new DAOException("Cannot lookup null or empty pet");
+    public String createStream(Stream stream) throws DAOException {
+        if (stream.getStreamType() == null || stream.getStreamType().trim().equals("")) {
+            throw new DAOException("Cannot lookup null or empty stream");
         }
 
-        getMapper().save(pet);
+        getMapper().save(stream);
 
-        return pet.getPetId();
+        return stream.getStreamId();
     }
 
     /**
-     * Gets a Pet by its id
+     * Gets a Stream by its id
      *
-     * @param petId The petId to look for
-     * @return An initialized Pet object, null if the Pet could not be found
+     * @param streamId The streamId to look for
+     * @return An initialized Stream object, null if the Stream could not be found
      * @throws DAOException
      */
-    public Pet getPetById(String petId) throws DAOException {
-        if (petId == null || petId.trim().equals("")) {
-            throw new DAOException("Cannot lookup null or empty petId");
+    public Stream getStreamById(String streamId) throws DAOException {
+        if (streamId == null || streamId.trim().equals("")) {
+            throw new DAOException("Cannot lookup null or empty streamId");
         }
 
-        return getMapper().load(Pet.class, petId);
+        return getMapper().load(Stream.class, streamId);
     }
 
     /**
-     * Returns a list of pets in the DynamoDB table.
+     * Returns a list of streams in the DynamoDB table.
      *
      * @param limit The maximum numbers of results for the scan
-     * @return A List of Pet objects
+     * @return A List of Stream objects
      */
-    public List<Pet> getPets(int limit) {
+    public List<Stream> getStreams(int limit) {
         if (limit <= 0 || limit > DynamoDBConfiguration.SCAN_LIMIT)
             limit = DynamoDBConfiguration.SCAN_LIMIT;
 
         DynamoDBScanExpression expression = new DynamoDBScanExpression();
         expression.setLimit(limit);
-        return getMapper().scan(Pet.class, expression);
+        return getMapper().scan(Stream.class, expression);
     }
 
     /**

@@ -21,17 +21,17 @@
 
 @class MasterViewController;
 
-@interface CreatePetViewController : UIViewController
+@interface CreateStreamViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *petTypeField;
-@property (weak, nonatomic) IBOutlet UITextField *petNameField;
-@property (weak, nonatomic) IBOutlet UITextField *petAgeField;
+@property (weak, nonatomic) IBOutlet UITextField *streamTypeField;
+@property (weak, nonatomic) IBOutlet UITextField *streamNameField;
+@property (weak, nonatomic) IBOutlet UITextField *streamAgeField;
 @property (weak, nonatomic) IBOutlet UIStepper *ageStepper;
 
 @property (strong, nonatomic) MasterViewController *masterController;
 
 - (IBAction)ageStepped:(id)sender;
-- (IBAction)createPet:(id)sender;
+- (IBAction)createStream:(id)sender;
 - (IBAction)cancel:(id)sender;
 
 @end

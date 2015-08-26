@@ -19,10 +19,10 @@
 
 #import "PETLoginUserResponse.h"
 #import "PETRegisterUserRequest.h"
-#import "PETListPetsResponse.h"
-#import "PETCreatePetResponse.h"
-#import "PETCreatePetRequest.h"
-#import "PETGetPetResponse.h"
+#import "PETListStreamsResponse.h"
+#import "PETCreateStreamResponse.h"
+#import "PETCreateStreamRequest.h"
+#import "PETGetStreamResponse.h"
 #import "PETRegisterUserResponse.h"
 #import "PETError.h"
 
@@ -183,27 +183,27 @@
  
  
  
- return type: PETListPetsResponse *
+ return type: PETListStreamsResponse *
  */
-- (AWSTask *)petsGet;
+- (AWSTask *)streamsGet;
 
 /**
  
  
  @param body 
  
- return type: PETCreatePetResponse *
+ return type: PETCreateStreamResponse *
  */
-- (AWSTask *)petsPost:(PETCreatePetRequest *)body;
+- (AWSTask *)streamsPost:(PETCreateStreamRequest *)body;
 
 /**
  
  
- @param petId 
+ @param streamId
  
- return type: PETGetPetResponse *
+ return type: PETGetStreamResponse *
  */
-- (AWSTask *)petsPetIdGet:(NSString *)petId;
+- (AWSTask *)streamsStreamIdGet:(NSString *)streamId;
 
 /**
  

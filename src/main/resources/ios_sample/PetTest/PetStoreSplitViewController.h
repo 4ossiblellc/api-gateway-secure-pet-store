@@ -19,6 +19,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PetStoreSplitViewController : UISplitViewController
+@interface StreamStoreSplitViewController : UISplitViewController
 
 @end

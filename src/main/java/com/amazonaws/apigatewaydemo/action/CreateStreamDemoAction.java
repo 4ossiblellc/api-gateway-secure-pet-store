@@ -17,56 +17,56 @@ import com.amazonaws.apigatewaydemo.exception.BadRequestException;
 import com.amazonaws.apigatewaydemo.exception.DAOException;
 import com.amazonaws.apigatewaydemo.exception.InternalErrorException;
 import com.amazonaws.apigatewaydemo.model.DAOFactory;
-import com.amazonaws.apigatewaydemo.model.action.CreatePetRequest;
-import com.amazonaws.apigatewaydemo.model.action.CreatePetResponse;
-import com.amazonaws.apigatewaydemo.model.pet.Pet;
-import com.amazonaws.apigatewaydemo.model.pet.PetDAO;
+import com.amazonaws.apigatewaydemo.model.action.CreateStreamRequest;
+import com.amazonaws.apigatewaydemo.model.action.CreateStreamResponse;
+import com.amazonaws.apigatewaydemo.model.stream.Stream;
+import com.amazonaws.apigatewaydemo.model.stream.StreamDAO;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.google.gson.JsonObject;
 
 /**
- * Action that creates a new Pet in the data store
+ * Action that creates a new Stream in the data store
  * <p/>
- * POST to /pets/
+ * POST to /streams/
  */
-public class CreatePetDemoAction extends AbstractDemoAction {
+public class CreateStreamDemoAction extends AbstractDemoAction {
     private LambdaLogger logger;
 
     public String handle(JsonObject request, Context lambdaContext) throws BadRequestException, InternalErrorException {
         logger = lambdaContext.getLogger();
 
-        CreatePetRequest input = getGson().fromJson(request, CreatePetRequest.class);
+        CreateStreamRequest input = getGson().fromJson(request, CreateStreamRequest.class);
 
         if (input == null ||
-                input.getPetType() == null ||
-                input.getPetType().trim().equals("")) {
+                input.getStreamType() == null ||
+                input.getStreamType().trim().equals("")) {
             throw new BadRequestException(ExceptionMessages.EX_INVALID_INPUT);
         }
 
-        PetDAO dao = DAOFactory.getPetDAO();
+        StreamDAO dao = DAOFactory.getStreamDAO();
 
-        Pet newPet = new Pet();
-        newPet.setPetType(input.getPetType());
-        newPet.setPetName(input.getPetName());
-        newPet.setPetAge(input.getPetAge());
+        Stream newStream = new Stream();
+        newStream.setStreamType(input.getStreamType());
+        newStream.setStreamName(input.getStreamName());
+        newStream.setStreamAge(input.getStreamAge());
 
-        String petId;
+        String streamId;
 
         try {
-            petId = dao.createPet(newPet);
+            streamId = dao.createStream(newStream);
         } catch (final DAOException e) {
-            logger.log("Error while creating new pet\n" + e.getMessage());
+            logger.log("Error while creating new stream\n" + e.getMessage());
             throw new InternalErrorException(ExceptionMessages.EX_DAO_ERROR);
         }
 
-        if (petId == null || petId.trim().equals("")) {
-            logger.log("PetID is null or empty");
+        if (streamId == null || streamId.trim().equals("")) {
+            logger.log("StreamID is null or empty");
             throw new InternalErrorException(ExceptionMessages.EX_DAO_ERROR);
         }
 
-        CreatePetResponse output = new CreatePetResponse();
-        output.setPetId(petId);
+        CreateStreamResponse output = new CreateStreamResponse();
+        output.setStreamId(streamId);
 
         return getGson().toJson(output);
     }

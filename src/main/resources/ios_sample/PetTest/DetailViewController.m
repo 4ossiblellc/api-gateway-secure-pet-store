@@ -20,7 +20,7 @@
 #import "DetailViewController.h"
 #import "PETLambdaMicroserviceClient.h"
 #import "MBProgressHud.h"
-#import "PETGetPetResponse.h"
+#import "PETGetStreamResponse.h"
 
 @interface DetailViewController ()
 
@@ -36,7 +36,7 @@
     [self configureView];
 }
 
-- (void)setDetailItem:(PETGetPetResponse *)detailItem {
+- (void)setDetailItem:(PETGetStreamResponse *)detailItem {
     if (_detailItem != detailItem) {
         _detailItem = detailItem;
 
@@ -48,11 +48,11 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = self.detailItem.petName;
-        self.petIdLabel.text = self.detailItem.petId;
-        self.petTypeLabel.text = self.detailItem.petType;
-        self.petNameLabel.text = self.detailItem.petName;
-        self.petAgeLabel.text = [self.detailItem.petAge stringValue];
+        self.detailDescriptionLabel.text = self.detailItem.streamName;
+        self.streamIdLabel.text = self.detailItem.streamId;
+        self.streamTypeLabel.text = self.detailItem.streamType;
+        self.streamNameLabel.text = self.detailItem.streamName;
+        self.streamAgeLabel.text = [self.detailItem.streamAge stringValue];
     }
 }
 

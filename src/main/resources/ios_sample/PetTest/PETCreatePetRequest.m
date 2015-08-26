@@ -14,15 +14,15 @@
  */
  
 
-#import "PETCreatePetRequest.h"
+#import "PETCreateStreamRequest.h"
 
-@implementation PETCreatePetRequest
+@implementation PETCreateStreamRequest
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
-             @"petType": @"petType",
-             @"petName": @"petName",
-             @"petAge": @"petAge"
+             @"streamType": @"streamType",
+             @"streamName": @"streamName",
+             @"streamAge": @"streamAge"
              };
 }
 

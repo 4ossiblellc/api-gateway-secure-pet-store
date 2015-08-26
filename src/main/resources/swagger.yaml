@@ -2,8 +2,8 @@
 # as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
-  title: API Gateway Secure Pet Store
-  description: Pet store sample that uses Cognito Developer Authenticated Identities to generate credentials through a Java Lambda Function
+  title: API Gateway Secure Stream Store
+  description: Stream store sample that uses Cognito Developer Authenticated Identities to generate credentials through a Java Lambda Function
   version: "1.0.0"
 # the domain of the service
 host: execute-api.us-east-1.amazonaws.com
@@ -35,8 +35,8 @@ paths:
         - Auth
       x-amazon-apigateway-integration:
         type: aws
-        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:XXXXXXXXXXXX:function:YOUR_FUNCTION_NAME/invocations
-        credentials: arn:aws:iam::XXXXXXXXXXXX:role/YOUR_LAMBDA_INVOCATION_ROLE
+        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:1add9a6f-1496-4ff6-a610-215aa4403f51:function:livecooktv-api/invocations
+        credentials: arn:aws:iam::766545951932:role/Cognito_livecooktvUnauth_Role
         httpMethod: POST
         requestTemplates:
           application/json: |
@@ -84,8 +84,8 @@ paths:
         - Auth
       x-amazon-apigateway-integration:
         type: aws
-        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:XXXXXXXXXXXX:function:YOUR_FUNCTION_NAME/invocations
-        credentials: arn:aws:iam::XXXXXXXXXXXX:role/YOUR_LAMBDA_INVOCATION_ROLE
+        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:1add9a6f-1496-4ff6-a610-215aa4403f51:function:livecooktv-api/invocations
+        credentials: arn:aws:cognito-identity:us-east-1:766545951932:identitypool/us-east-1:1add9a6f-1496-4ff6-a610-215aa4403f51
         httpMethod: POST
         requestTemplates:
           application/json: |
@@ -113,11 +113,11 @@ paths:
           description: Internal error
           schema:
             $ref: '#/definitions/Error'
-  /pets:
+  /streams:
     post:
-      summary: Creates a new pet
+      summary: Creates a new streams
       description: |
-        Creates a new pet object in the datastore
+        Creates a new stream object in the datastore
       x-amazon-apigateway-auth:
         type: aws_iam
       consumes:
@@ -125,22 +125,22 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: NewPet
+        - name: NewStream
           in: body
-          description: New pet details.
+          description: New stream details.
           schema:
-            $ref: '#/definitions/NewPet'
+            $ref: '#/definitions/NewStream'
       tags:
-        - Pet Store
+        - Stream Store
       x-amazon-apigateway-integration:
         type: aws
-        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:XXXXXXXXXXXX:function:YOUR_FUNCTION_NAME/invocations
+        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:1add9a6f-1496-4ff6-a610-215aa4403f51:function:livecooktv-api/invocations
         credentials: arn:aws:iam::*:user/*
         httpMethod: POST
         requestTemplates:
           application/json: |
             {
-              "action" : "com.amazonaws.apigatewaydemo.action.CreatePetDemoAction",
+              "action" : "com.amazonaws.apigatewaydemo.action.CreateStreamDemoAction",
               "body" : $input.json('$')
             }
         responses:
@@ -152,9 +152,9 @@ paths:
             statusCode: "500"
       responses:
         200:
-          description: The unique identifier of the new pet
+          description: The unique identifier of the new stream
           schema:
-            $ref: '#/definitions/NewPetResponse'
+            $ref: '#/definitions/NewStreamResponse'
         400:
           description: Bad request
           schema:
@@ -164,8 +164,8 @@ paths:
           schema:
             $ref: '#/definitions/Error'
     get:
-      summary: List pets
-      description: Retrieve a list of pets in the store
+      summary: List streams
+      description: Retrieve a list of streams in the store
       x-amazon-apigateway-auth:
         type: aws_iam
       consumes:
@@ -173,16 +173,16 @@ paths:
       produces:
         - application/json
       tags:
-        - Pet Store
+        - Stream Store
       x-amazon-apigateway-integration:
         type: aws
-        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:XXXXXXXXXXXX:function:YOUR_FUNCTION_NAME/invocations
+        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:1add9a6f-1496-4ff6-a610-215aa4403f51:function:livecooktv-api/invocations
         credentials: arn:aws:iam::*:user/*
         httpMethod: POST
         requestTemplates:
           application/json: |
             {
-              "action" : "com.amazonaws.apigatewaydemo.action.ListPetsDemoAction",
+              "action" : "com.amazonaws.apigatewaydemo.action.ListStreamsDemoAction",
               "body" : $input.json('$')
             }
         responses:
@@ -194,9 +194,9 @@ paths:
             statusCode: "500"
       responses:
         200:
-          description: A list of pets
+          description: A list of streams
           schema:
-            $ref: '#/definitions/Pets'
+            $ref: '#/definitions/Streams'
         400:
           description: Bad request
           schema:
@@ -205,10 +205,10 @@ paths:
           description: Internal error
           schema:
             $ref: '#/definitions/Error'
-  /pets/{petId}:
+  /streams/{streamId}:
     get:
-      summary: Get pet by id
-      description: Returns a pet definition based on the given id
+      summary: Get stream by id
+      description: Returns a stream definition based on the given id
       x-amazon-apigateway-auth:
         type: aws_iam
       consumes:
@@ -216,23 +216,23 @@ paths:
       produces:
         - application/json
       tags:
-        - Pet Store
+        - Stream Store
       parameters:
-        - name: petId
+        - name: streamId
           in: path
-          description: The unique identifier for a pet
+          description: The unique identifier for a stream
           type: string
       x-amazon-apigateway-integration:
         type: aws
-        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:XXXXXXXXXXXX:function:YOUR_FUNCTION_NAME/invocations
+        uri: arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:1add9a6f-1496-4ff6-a610-215aa4403f51:function:livecooktv-api/invocations
         credentials: arn:aws:iam::*:user/*
         httpMethod: POST
         requestTemplates:
           application/json: |
             {
-              "action" : "com.amazonaws.apigatewaydemo.action.GetPetDemoAction",
+              "action" : "com.amazonaws.apigatewaydemo.action.GetStreamDemoAction",
               "body" : {
-                "petId" : "$input.params('petId')"
+                "streamId" : "$input.params('streamId')"
               }
             }
         responses:
@@ -244,9 +244,9 @@ paths:
             statusCode: "500"
       responses:
         200:
-          description: A pet
+          description: A stream
           schema:
-            $ref: '#/definitions/Pet'
+            $ref: '#/definitions/Stream'
         400:
           description: Bad request
           schema:
@@ -313,40 +313,40 @@ definitions:
             type: integer
             description: |
               Expiration date of the temporary credentials in millis since 1/1/1970
-  NewPet:
+  NewStream:
     properties:
-      petType:
+      streamType:
         type: string
-        description: Free text pet type
-      petName:
+        description: Free text stream type
+      streamName:
         type: string
-        description: Free text pet name
-      petAge:
+        description: Free text stream name
+      streamAge:
         type: integer
-        description: Age of the new pet
-  NewPetResponse:
+        description: Age of the new stream
+  NewStreamResponse:
     properties:
-      petId:
+      streamId:
         type: string
-        description: The generated unique identifier for the new pet
-  Pet:
+        description: The generated unique identifier for the new stream
+  Stream:
     properties:
-      petId:
+      streamId:
         type: string
-        description: The generated unique identifier for the new pet
-      petType:
+        description: The generated unique identifier for the new stream
+      streamType:
         type: string
-        description: Free text pet type
-      petName:
+        description: Free text stream type
+      streamName:
         type: string
-        description: Free text pet name
-      petAge:
+        description: Free text stream name
+      streamAge:
         type: integer
-        description: Age of the new pet
-  Pets:
+        description: Age of the new stream
+  Streams:
     type: array
     items:
-      $ref: Pet
+      $ref: Stream
   Error:
     properties:
       code:

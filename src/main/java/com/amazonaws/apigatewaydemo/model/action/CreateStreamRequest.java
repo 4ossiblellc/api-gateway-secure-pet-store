@@ -13,16 +13,34 @@
 package com.amazonaws.apigatewaydemo.model.action;
 
 /**
- * Bean for the get pet by id request.
+ * Bean for the stream creation request
  */
-public class GetPetRequest {
-    private String petId;
+public class CreateStreamRequest {
+    private String streamType;
+    private String streamName;
+    private int streamAge;
 
-    public String getPetId() {
-        return petId;
+    public String getStreamType() {
+        return streamType;
     }
 
-    public void setPetId(String petId) {
-        this.petId = petId;
+    public void setStreamType(String streamType) {
+        this.streamType = streamType;
+    }
+
+    public String getStreamName() {
+        return streamName;
+    }
+
+    public void setStreamName(String streamName) {
+        this.streamName = streamName;
+    }
+
+    public int getStreamAge() {
+        return streamAge;
+    }
+
+    public void setStreamAge(int streamAge) {
+        this.streamAge = streamAge;
     }
 }

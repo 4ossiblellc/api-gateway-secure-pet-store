@@ -16,9 +16,9 @@ import com.amazonaws.apigatewaydemo.configuration.DynamoDBConfiguration;
 import com.amazonaws.apigatewaydemo.exception.BadRequestException;
 import com.amazonaws.apigatewaydemo.exception.InternalErrorException;
 import com.amazonaws.apigatewaydemo.model.DAOFactory;
-import com.amazonaws.apigatewaydemo.model.action.ListPetsResponse;
-import com.amazonaws.apigatewaydemo.model.pet.Pet;
-import com.amazonaws.apigatewaydemo.model.pet.PetDAO;
+import com.amazonaws.apigatewaydemo.model.action.ListStreamsResponse;
+import com.amazonaws.apigatewaydemo.model.stream.Stream;
+import com.amazonaws.apigatewaydemo.model.stream.StreamDAO;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.google.gson.JsonObject;
@@ -26,24 +26,24 @@ import com.google.gson.JsonObject;
 import java.util.List;
 
 /**
- * Action to return a list of pets from in the data store
+ * Action to return a list of streams from in the data store
  * <p/>
- * GET to /pets/
+ * GET to /streams/
  */
-public class ListPetsDemoAction extends AbstractDemoAction {
+public class ListStreamsDemoAction extends AbstractDemoAction {
     private static LambdaLogger logger;
 
     public String handle(JsonObject request, Context lambdaContext) throws BadRequestException, InternalErrorException {
         logger = lambdaContext.getLogger();
 
-        PetDAO dao = DAOFactory.getPetDAO();
+        StreamDAO dao = DAOFactory.getStreamDAO();
 
-        List<Pet> pets = dao.getPets(DynamoDBConfiguration.SCAN_LIMIT);
+        List<Stream> streams = dao.getStreams(DynamoDBConfiguration.SCAN_LIMIT);
 
-        ListPetsResponse output = new ListPetsResponse();
-        output.setCount(pets.size());
+        ListStreamsResponse output = new ListStreamsResponse();
+        output.setCount(streams.size());
         output.setPageLimit(DynamoDBConfiguration.SCAN_LIMIT);
-        output.setPets(pets);
+        output.setStreams(streams);
 
         return getGson().toJson(output);
     }

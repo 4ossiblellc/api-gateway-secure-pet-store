@@ -17,13 +17,13 @@
  * under the License.
  */
 
-#import "PetStoreSplitViewController.h"
+#import "StreamStoreSplitViewController.h"
 
-@interface PetStoreSplitViewController ()
+@interface StreamStoreSplitViewController ()
 
 @end
 
-@implementation PetStoreSplitViewController
+@implementation StreamStoreSplitViewController
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController
 collapseSecondaryViewController:(UIViewController *)secondaryViewController

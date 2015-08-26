@@ -17,17 +17,17 @@
  * under the License.
  */
 
-#import "CreatePetViewController.h"
+#import "CreateStreamViewController.h"
 #import "PETLambdaMicroserviceClient.h"
 #import "MBProgressHud.h"
 #import "MasterViewController.h"
 #import "UIViewController+PETViewController.h"
 
-@interface CreatePetViewController ()
+@interface CreateStreamViewController ()
 
 @end
 
-@implementation CreatePetViewController
+@implementation CreateStreamViewController
 
 /*
  #pragma mark - Navigation
@@ -40,34 +40,34 @@
  */
 
 - (IBAction)ageStepped:(id)sender {
-    self.petAgeField.text = [NSString stringWithFormat:@"%.f", self.ageStepper.value];
+    self.streamAgeField.text = [NSString stringWithFormat:@"%.f", self.ageStepper.value];
 }
 
-- (IBAction)createPet:(id)sender {
-    [self showLoader:@"Creating pet"];
+- (IBAction)createStream:(id)sender {
+    [self showLoader:@"Creating stream"];
 
     PETLambdaMicroserviceClient *client = [PETLambdaMicroserviceClient defaultClient];
     [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
 
-    PETCreatePetRequest *request = [PETCreatePetRequest new];
-    request.petName = self.petNameField.text;
-    request.petType = self.petTypeField.text;
-    request.petAge = @(self.ageStepper.value);
+    PETCreateStreamRequest *request = [PETCreateStreamRequest new];
+    request.streamName = self.streamNameField.text;
+    request.streamType = self.streamTypeField.text;
+    request.streamAge = @(self.ageStepper.value);
 
-    [[client petsPost:request] continueWithBlock:^id(AWSTask *task) {
+    [[client streamsPost:request] continueWithBlock:^id(AWSTask *task) {
         [self hideLoader];
 
         if (task.error) {
             NSDictionary *errorBody = [task.error.userInfo objectForKey:AWSAPIGatewayErrorHTTPBodyKey];
             NSString *errorMessage = [errorBody objectForKey:@"message"];
 
-            [self showErrorMessage:errorMessage withTitle:@"Error while retrieving pet"];
+            [self showErrorMessage:errorMessage withTitle:@"Error while retrieving stream"];
         } else if (task.exception) {
             // Handle the exception.
         } else {
-            //PETCreatePetResponse *resp = task.result;
+            //PETCreateStreamResponse *resp = task.result;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.masterController loadPets];
+                [self.masterController loadStreams];
                 [self dismissViewControllerAnimated:YES completion:^{
 
                 }];

@@ -18,8 +18,8 @@ package com.amazonaws.apigatewaydemo.configuration;
 public class DynamoDBConfiguration {
     // TODO: Specify the name of the Users table in DynamoDB
     public static final String USERS_TABLE_NAME = "users";
-    // TODO: Specify the name of the Pet table in DynamoDB
-    public static final String PET_TABLE_NAME = "pets";
+    // TODO: Specify the name of the Streams table in DynamoDB
+    public static final String STREAMS_TABLE_NAME = "streams";
 
     public static final int SCAN_LIMIT = 50;
 }

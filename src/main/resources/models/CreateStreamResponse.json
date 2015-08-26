@@ -3,12 +3,12 @@
   "id": "http://jsonschema.net",
   "type": "object",
   "properties": {
-    "petId": {
-      "id": "http://jsonschema.net/petId",
+    "streamId": {
+      "id": "http://jsonschema.net/streamId",
       "type": "string"
     }
   },
   "required": [
-    "petId"
+    "streamId"
   ]
 }

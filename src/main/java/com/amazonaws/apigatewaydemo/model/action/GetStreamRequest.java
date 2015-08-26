@@ -12,39 +12,17 @@
  */
 package com.amazonaws.apigatewaydemo.model.action;
 
-import com.amazonaws.apigatewaydemo.model.pet.Pet;
-
-import java.util.List;
-
 /**
- * Bean for the list pets response.
+ * Bean for the get stream by id request.
  */
-public class ListPetsResponse {
-    private int count;
-    private int pageLimit;
-    private List<Pet> pets;
+public class GetStreamRequest {
+    private String streamId;
 
-    public int getCount() {
-        return count;
+    public String getStreamId() {
+        return streamId;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getPageLimit() {
-        return pageLimit;
-    }
-
-    public void setPageLimit(int pageLimit) {
-        this.pageLimit = pageLimit;
-    }
-
-    public List<Pet> getPets() {
-        return pets;
-    }
-
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
+    public void setStreamId(String streamId) {
+        this.streamId = streamId;
     }
 }

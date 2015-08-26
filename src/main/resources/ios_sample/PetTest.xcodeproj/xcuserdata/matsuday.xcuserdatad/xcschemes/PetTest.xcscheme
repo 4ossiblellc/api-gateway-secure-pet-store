@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "23DD9A0A1B597D9000234D85"
-               BuildableName = "PetTest.app"
-               BlueprintName = "PetTest"
-               ReferencedContainer = "container:PetTest.xcodeproj">
+               BuildableName = "StreamTest.app"
+               BlueprintName = "StreamTest"
+               ReferencedContainer = "container:StreamTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "23DD9A261B597D9100234D85"
-               BuildableName = "PetTestTests.xctest"
-               BlueprintName = "PetTestTests"
-               ReferencedContainer = "container:PetTest.xcodeproj">
+               BuildableName = "StreamTestTests.xctest"
+               BlueprintName = "StreamTestTests"
+               ReferencedContainer = "container:StreamTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "23DD9A261B597D9100234D85"
-               BuildableName = "PetTestTests.xctest"
-               BlueprintName = "PetTestTests"
-               ReferencedContainer = "container:PetTest.xcodeproj">
+               BuildableName = "StreamTestTests.xctest"
+               BlueprintName = "StreamTestTests"
+               ReferencedContainer = "container:StreamTest.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "23DD9A0A1B597D9000234D85"
-            BuildableName = "PetTest.app"
-            BlueprintName = "PetTest"
-            ReferencedContainer = "container:PetTest.xcodeproj">
+            BuildableName = "StreamTest.app"
+            BlueprintName = "StreamTest"
+            ReferencedContainer = "container:StreamTest.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "23DD9A0A1B597D9000234D85"
-            BuildableName = "PetTest.app"
-            BlueprintName = "PetTest"
-            ReferencedContainer = "container:PetTest.xcodeproj">
+            BuildableName = "StreamTest.app"
+            BlueprintName = "StreamTest"
+            ReferencedContainer = "container:StreamTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "23DD9A0A1B597D9000234D85"
-            BuildableName = "PetTest.app"
-            BlueprintName = "PetTest"
-            ReferencedContainer = "container:PetTest.xcodeproj">
+            BuildableName = "StreamTest.app"
+            BlueprintName = "StreamTest"
+            ReferencedContainer = "container:StreamTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

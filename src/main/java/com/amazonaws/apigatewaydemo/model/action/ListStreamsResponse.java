@@ -12,35 +12,39 @@
  */
 package com.amazonaws.apigatewaydemo.model.action;
 
+import com.amazonaws.apigatewaydemo.model.stream.Stream;
+
+import java.util.List;
+
 /**
- * Bean for the pet creation request
+ * Bean for the list streams response.
  */
-public class CreatePetRequest {
-    private String petType;
-    private String petName;
-    private int petAge;
+public class ListStreamsResponse {
+    private int count;
+    private int pageLimit;
+    private List<Stream> streams;
 
-    public String getPetType() {
-        return petType;
+    public int getCount() {
+        return count;
     }
 
-    public void setPetType(String petType) {
-        this.petType = petType;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public String getPetName() {
-        return petName;
+    public int getPageLimit() {
+        return pageLimit;
     }
 
-    public void setPetName(String petName) {
-        this.petName = petName;
+    public void setPageLimit(int pageLimit) {
+        this.pageLimit = pageLimit;
     }
 
-    public int getPetAge() {
-        return petAge;
+    public List<Stream> getStreams() {
+        return streams;
     }
 
-    public void setPetAge(int petAge) {
-        this.petAge = petAge;
+    public void setStreams(List<Stream> streams) {
+        this.streams = streams;
     }
 }
